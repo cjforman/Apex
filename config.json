@@ -1,0 +1,19 @@
+{
+    "settings": {
+	"PDBFilename": "MASP2.pdb",
+        "command": "resInfo",
+	"atomTypes": ["ATOM"],
+        "outputFileroot": "MASP2",
+        "resInfoType": ["torsion"],
+	"plotData": ["Ramachandran"],
+        "verbose": 0,
+	"heartBeat": 1000,
+	"plotDict": {"PRO":"g+", "TYR": "bx", "DEF": "rx"},
+	"Grid": 1,
+	"phiMin": -180, 
+	"phiMax":  180, 
+	"psiMin": -180, 
+	"psiMax":  180,
+	"Title": "MASP2 Ramachandran Plot"
+        }
+}
