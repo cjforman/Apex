@@ -1,0 +1,1 @@
+python -m PDBAnalyzer $args[0]
