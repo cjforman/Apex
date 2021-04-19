@@ -96,6 +96,20 @@ class plotData():
         with open( filename, "w" ) as f:
             json.dump( data, f, default=lambda o: o.tolist() if isinstance(o, np.ndarray) else o.__dict__)
 
+    def plotFunc(self):
+        print(self.settings)
+        params = [ float(param) for param in self.settings['params']]
+        x = np.linspace(self.settings['startX'], self.settings['stopX'], self.settings['numX'])
+        if self.settings['function']=='tanh':
+            y =  params[0] * np.tanh (params[1] * x)
+        fig, ax = plt.subplots(1)
+        plt.axis('off')
+        plt.plot(x,y)
+        plt.xlabel(self.settings['xlabel'])
+        plt.ylabel(self.settings['ylabel'])
+        ax.set_yticklabels([])
+        ax.set_xticklabels([])
+        plt.show()
 
     # plots a ramachandran plot from the torsion
     def plotRamachandran(self, data):
@@ -266,7 +280,7 @@ class plotData():
         
         return outStr + '\n'
 
-    def plotEchem_BZometer(self, data):
+    def plot_EchemBZometer(self, data):
         # plots out the data that is present in the given dictionary
         try:
             testString = self.getTestString(data['testDict'])
@@ -281,20 +295,20 @@ class plotData():
                     v_EC = np.array(data['ECData'][str(channel)]['v'])
 
                     plt.figure(channel)
-                    plt.subplot(311)
-                    plt.plot(t_EC, v_EC, '+')
-                    plt.ylabel('potential (V)')
-                    plt.xlabel('time (secs)')
-                    plt.grid('on')
-                    plt.title('volt, curr vs time, ' + testString + ' channel= ' + str(channel) + ', test= ' + str(testNum))
+                    # plt.subplot(311)
+                    # plt.plot(t_EC, v_EC, '+')
+                    # plt.ylabel('potential (V)')
+                    # plt.xlabel('time (secs)')
+                    # plt.grid('on')
+                    # plt.title('volt, curr vs time, ' + testString + ' channel= ' + str(channel) + ', test= ' + str(testNum))
 
-                    plt.subplot(312)
-                    plt.plot(t_EC, i_EC, '+')
-                    plt.ylabel('current (uA)')
-                    plt.grid('on')
-                    plt.xlabel('time (secs)')
+                    # plt.subplot(312)
+                    # plt.plot(t_EC, i_EC, '+')
+                    # plt.ylabel('current (uA)')
+                    # plt.grid('on')
+                    # plt.xlabel('time (secs)')
                     
-                    plt.subplot(313)
+                    # plt.subplot(313)
                     plt.plot(v_EC, i_EC, '+')
                     plt.xlabel('potential (V)')
                     plt.ylabel('current (uA)')
@@ -328,7 +342,7 @@ class plotData():
                     plt.ylabel('potential (V)')
                     plt.xlabel('time (secs)')
                     plt.grid('on')
-                    plt.title('volt, curr vs time, ' + testString + ' channel= ' + str(channel) + ', test= ' + str(testNum))
+                    plt.title('volt, curr vs time, ')# + testString + ' channel= ' + str(channel) + ', test= ' + str(testNum))
 
                     plt.subplot(312)
                     plt.plot(t_EC, i_EC, '+')
